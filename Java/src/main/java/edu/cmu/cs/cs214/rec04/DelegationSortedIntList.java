@@ -42,12 +42,19 @@ public class DelegationSortedIntList implements IntegerList {
 
     @Override
     public boolean remove(int num) {
-        return sortedIntList.remove(num);
+        boolean removed = sortedIntList.remove(num);
+        if (removed) {
+            totalAdded--;
+        }
+        return removed;
     }
 
     @Override
     public boolean removeAll(IntegerList list) {
-        return sortedIntList.removeAll(list);
+        for (int i = 0; i < list.size(); i++) {
+            remove(list.get(i));
+        }
+        return true;
     }
 
     @Override

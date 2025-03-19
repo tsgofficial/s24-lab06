@@ -34,6 +34,23 @@ public class InheritanceSortedIntList extends SortedIntList {
         return true;
     }
 
+    @Override
+    public boolean remove(int num) {
+        boolean removed = super.remove(num);
+        if (removed) {
+            totalAdded--;
+        }
+        return removed;
+    }
+
+    @Override
+    public boolean removeAll(IntegerList list) {
+        for (int i = 0; i < list.size(); i++) {
+            remove(list.get(i));
+        }
+        return true;
+    }
+
     public int getTotalAdded() {
         return totalAdded;
     }
